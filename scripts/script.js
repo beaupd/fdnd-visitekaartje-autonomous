@@ -77,8 +77,7 @@ function initStars() {
 const mouse = {
     x: 0,
     y: 0,
-    radius: 50,
-    on: false
+    radius: 50
 }
 
 const cardElement = document.querySelector("#name_card");
@@ -93,8 +92,6 @@ const nameCard = {
 
 function init() {
     initButtons();initCards();initStars();
-    document.onmousein = ()=>{mouse.on=true;};
-    document.onmouseout = ()=>{mouse.on=false;};
     const stars = document.querySelectorAll("span.star");
     console.log(stars.length);
     document.onmousemove = (e) => {
@@ -103,7 +100,7 @@ function init() {
         for(i=0; i < stars.length; i++){
             s = stars[i];
             d = Math.sqrt(Math.pow(((mouse.x-mouse.radius) - (s.offsetLeft-s.offsetWidth/2)), 2) + Math.pow(((mouse.y-mouse.radius) - (s.offsetTop-s.offsetWidth/2)), 2));
-            if (d - (mouse.radius+s.offsetWidth) < 0 && mouse.on == true){//in range
+            if (d - (mouse.radius+s.offsetWidth) < 0){//in range
                 s.classList.add("active");
                 ((element)=>{setTimeout(function() {element.classList.remove("active");}, 1500);})(s);
             } 
